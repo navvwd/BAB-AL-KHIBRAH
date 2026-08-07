@@ -126,7 +126,8 @@ export default function AboutPage() {
                   </Link>
 
                   <a
-                    href="/api/brochure"
+                    href="/bbk-brchr.pdf"
+                    download="Bab-Al-Khibrah-Brochure.pdf"
                     className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-wider border border-[#D65A24] text-[#D65A24] hover:bg-[#D65A24] hover:text-white px-7 py-3.5 rounded-sm transition-all"
                   >
                     <Download className="w-4 h-4" />
@@ -343,7 +344,8 @@ export default function AboutPage() {
                 </Link>
 
                 <a
-                  href="/api/brochure"
+                  href="/bbk-brchr.pdf"
+                  download="Bab-Al-Khibrah-Brochure.pdf"
                   className="w-full inline-flex items-center justify-center gap-2 font-sans text-xs font-bold uppercase tracking-wider border border-white/20 hover:border-white/50 text-white/80 hover:text-white px-7 py-4 rounded-sm transition-all"
                 >
                   <Download className="w-4 h-4" />

@@ -5,6 +5,10 @@ import Header from "@/components/navigation/Header";
 import Footer from "@/components/navigation/Footer";
 import { processingServices } from "@/data/services";
 
+export async function generateStaticParams() {
+  return processingServices.map((s) => ({ service: s.id }));
+}
+
 interface PageProps {
   params: Promise<{
     service: string;

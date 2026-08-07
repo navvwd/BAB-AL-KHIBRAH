@@ -5,6 +5,10 @@ import Header from "@/components/navigation/Header";
 import Footer from "@/components/navigation/Footer";
 import { materialCatalog } from "@/data/catalog";
 
+export async function generateStaticParams() {
+  return materialCatalog.map((g) => ({ grade: g.grade }));
+}
+
 interface PageProps {
   params: Promise<{
     grade: string;

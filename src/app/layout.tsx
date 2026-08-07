@@ -45,6 +45,11 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="icon" href="/Icon.png" type="image/png" />
+        <link rel="shortcut icon" href="/Icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/Icon.png" />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <LanguageProvider>
           {children}

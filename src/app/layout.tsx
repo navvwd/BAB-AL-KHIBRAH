@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     siteName: "Bab Al Khibrah Trading LLC",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({

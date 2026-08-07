@@ -162,11 +162,11 @@ export default function Header() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              initial={{ x: "100%" }}
+              initial={{ x: language === "ar" ? "-100%" : "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              exit={{ x: language === "ar" ? "-100%" : "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-full max-w-xs bg-white border-l border-slate-200 p-6 shadow-2xl flex flex-col justify-between z-50"
+              className={`fixed top-0 bottom-0 ${language === "ar" ? "left-0 border-r" : "right-0 border-l"} w-full max-w-[310px] bg-white border-slate-200 p-6 shadow-2xl flex flex-col justify-between z-50`}
               onClick={(e) => e.stopPropagation()}
             >
               <div>

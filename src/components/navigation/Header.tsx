@@ -63,7 +63,7 @@ export default function Header() {
                   priority
                 />
                 <span className="font-sans text-[11px] italic font-semibold text-[#D65A24] tracking-wide leading-none mt-0.5 ml-0.5">
-                  Engineering Steel Specialist
+                  {language === "ar" ? "متخصص في صلب الهندسة والصناعة" : "Engineering Steel Specialist"}
                 </span>
               </Link>
 

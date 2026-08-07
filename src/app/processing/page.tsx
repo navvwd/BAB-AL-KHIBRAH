@@ -1,10 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Scissors, Flame, ClipboardCheck, Import, CheckCircle, ShieldAlert } from "lucide-react";
 import Header from "@/components/navigation/Header";
 import Footer from "@/components/navigation/Footer";
 import { processingServices, warehouseEquipment } from "@/data/services";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ProcessingPage() {
+  const { t, language } = useLanguage();
+  const isAr = language === "ar";
+
   const serviceIcons: Record<string, React.ReactNode> = {
     "bandsaw-cutting": <Scissors className="w-6 h-6 text-orange" />,
     "oxy-fuel-cutting": <Flame className="w-6 h-6 text-orange" />,
@@ -21,21 +27,23 @@ export default function ProcessingPage() {
           
           {/* Breadcrumbs */}
           <div className="mb-6 font-mono text-[10px] text-steel">
-            <Link href="/" className="hover:text-orange transition-colors">HOME</Link>
+            <Link href="/" className="hover:text-orange transition-colors">{t("home").toUpperCase()}</Link>
             <span className="mx-2">/</span>
-            <span className="text-foreground">PROCESSING SERVICES</span>
+            <span className="text-foreground">{isAr ? "خدمات القص والتجهيز" : "PROCESSING SERVICES"}</span>
           </div>
 
           {/* Page Header */}
           <div className="mb-16 max-w-3xl space-y-4">
             <span className="font-mono text-xs text-orange uppercase tracking-widest font-semibold block">
-              Sharjah Yard Capabilities
+              {isAr ? "إمكانيات ومعدات المستودع بالشارقة" : "Sharjah Yard Capabilities"}
             </span>
             <h1 className="font-display text-4xl sm:text-5xl font-black text-foreground leading-none">
-              In-House Steel Sizing & Sourcing
+              {isAr ? "خدمات تفصيل وقص الصلب والاستيراد المخصص" : "In-House Steel Sizing & Sourcing"}
             </h1>
             <p className="font-sans text-sm text-steel leading-relaxed">
-              We process raw warehouse stock into net-shape blocks, cylinder rods, and plate profiled shapes. Our mechanical cold-saw cutting preserves the physical properties of high-tensile alloys.
+              {isAr
+                ? "نقوم بتقطيع خامات الفولاذ والسبائك إلى أبعاد ومقاسات دقيقة تلبي احتياجات ورش CNC والتصنيع الميكانيكي. يضمن المنشار البارد الحفاظ على البنية الداخلية الصلبة للمعدن دون إجهاد حراري."
+                : "We process raw warehouse stock into net-shape blocks, cylinder rods, and plate profiled shapes. Our mechanical cold-saw cutting preserves the physical properties of high-tensile alloys."}
             </p>
           </div>
 
@@ -70,11 +78,11 @@ export default function ProcessingPage() {
                   {/* Capabilities parameters */}
                   <div className="bg-white border border-border p-4 rounded-sm grid grid-cols-2 gap-4 text-xs font-mono">
                     <div>
-                      <span className="text-steel block text-[9px] uppercase">Tolerance:</span>
+                      <span className="text-steel block text-[9px] uppercase">{isAr ? "نسبة التسامح:" : "Tolerance:"}</span>
                       <span className="font-medium text-foreground">{service.capabilities.tolerance}</span>
                     </div>
                     <div>
-                      <span className="text-steel block text-[9px] uppercase">Max Dimension:</span>
+                      <span className="text-steel block text-[9px] uppercase">{isAr ? "الحد الأقصى للأبعاد:" : "Max Dimension:"}</span>
                       <span className="font-medium text-foreground">{service.capabilities.maxDimension}</span>
                     </div>
                   </div>
@@ -85,15 +93,15 @@ export default function ProcessingPage() {
                     href={`/processing/${service.id}`}
                     className="font-sans text-xs font-semibold uppercase tracking-wider text-foreground hover:text-orange transition-colors flex items-center space-x-1.5"
                   >
-                    <span>Inspect Capacities</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <span>{isAr ? "عرض المواصفات التفصيلية" : "Inspect Capacities"}</span>
+                    <ArrowRight className={`w-3.5 h-3.5 ${isAr ? "rotate-180" : ""}`} />
                   </Link>
 
                   <Link
                     href={`/contact?service=${encodeURIComponent(service.name)}`}
                     className="font-sans text-xs bg-blue hover:bg-blue/90 text-white px-4 py-2.5 rounded-sm transition-all"
                   >
-                    Request Quote
+                    {t("requestQuote")}
                   </Link>
                 </div>
               </div>
@@ -104,7 +112,7 @@ export default function ProcessingPage() {
           <div className="bg-graphite border border-border p-6 sm:p-8 rounded-sm space-y-6">
             <h2 className="font-display text-xl font-bold text-foreground flex items-center space-x-3">
               <CheckCircle className="w-5 h-5 text-orange" />
-              <span>Sharjah Yard Equipment Specifications</span>
+              <span>{isAr ? "مواصفات وتجهيزات معدات الشارقة" : "Sharjah Yard Equipment Specifications"}</span>
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-sans text-xs">
@@ -122,9 +130,11 @@ export default function ProcessingPage() {
             <div className="bg-orange/5 border border-orange/15 p-4 rounded-sm flex items-start space-x-3 text-xs text-orange">
               <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
               <div className="space-y-1">
-                <strong>TECHNICAL NOTE ON CAPACITY LIMITS:</strong>
+                <strong>{isAr ? "ملاحظة فنية حول الطاقة الاستيعابية:" : "TECHNICAL NOTE ON CAPACITY LIMITS:"}</strong>
                 <p className="text-steel leading-relaxed text-[11px]">
-                  All maximum sizes, cutting tolerances, and lead times listed are guidance estimates based on typical machinery configurations. Final capability thresholds are subject to confirmation with Bab Al Khibrah operations.
+                  {isAr
+                    ? "تعتبر كافة الأحجام والارتفاعات ونسب التسامح المدرجة بمثابة إرشادات تقديرية بناءً على قدرة الماكينات المتاحة بالمستودع. تخضع الطاقة الاستيعابية النهائية لتأكيد مبيعات شركة باب الخبرة."
+                    : "All maximum sizes, cutting tolerances, and lead times listed are guidance estimates based on typical machinery configurations. Final capability thresholds are subject to confirmation with Bab Al Khibrah operations."}
                 </p>
               </div>
             </div>

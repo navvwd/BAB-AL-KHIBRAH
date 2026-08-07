@@ -446,7 +446,7 @@ export const translations = {
     yardLocation: "موقع مستودع الشارقة",
     yardLocationAddress: "المكتب رقم 1، منطقة الصجعة الصناعية، الشارقة، الإمارات العربية المتحدة (ص.ب 24891)",
     operatingHours: "أوقات العمل",
-    workDays: "من الاثنين إلى السبت",
+    workDays: "من السبت إلى الجمعة",
     workHours: "8:00 صباحاً – 6:00 مساءً",
     detailedRfqTab: "طلب عرض سعر مفصل للخامات",
     generalDeskTab: "منصة الرسائل الاستفسارية",

@@ -202,7 +202,7 @@ export const translations = {
     yardLocation: "Sharjah Yard Location",
     yardLocationAddress: "Office #1, Al Saja'a Industrial Area, Sharjah, United Arab Emirates (P.O. Box 24891)",
     operatingHours: "Operating Hours",
-    workDays: "Monday – Saturday",
+    workDays: "Saturday – Friday",
     workHours: "8:00 AM – 6:00 PM",
     detailedRfqTab: "DETAILED MATERIAL RFQ",
     generalDeskTab: "GENERAL MESSAGE DESK",

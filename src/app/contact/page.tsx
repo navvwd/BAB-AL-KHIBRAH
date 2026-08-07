@@ -294,12 +294,8 @@ function ContactDeskInner() {
                   Operating Hours
                 </span>
                 <div className="flex justify-between">
-                  <span className="text-steel">Monday – Saturday:</span>
+                  <span className="text-steel">Saturday – Friday:</span>
                   <span className="text-foreground/90 font-medium">8:00 AM – 6:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-steel">Sunday:</span>
-                  <span className="text-orange font-bold font-mono">Closed</span>
                 </div>
               </div>
             </div>

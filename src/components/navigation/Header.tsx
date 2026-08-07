@@ -53,7 +53,7 @@ export default function Header() {
             
             {/* Brand Logo & Tagline */}
             <div className="flex items-center space-x-8">
-              <Link href="/" className="flex items-center space-x-3 group">
+              <Link href="/" className="flex flex-col items-start group">
                 <Image
                   src="/BAK LOGO_ENGLISH _ARABIC.jpg.jpeg"
                   alt="Bab Al Khibrah Trading LLC Logo"
@@ -62,6 +62,9 @@ export default function Header() {
                   className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                   priority
                 />
+                <span className="font-sans text-[11px] italic font-semibold text-[#D65A24] tracking-wide leading-none mt-0.5 ml-0.5">
+                  Engineering Steel Specialist
+                </span>
               </Link>
 
               {/* Desktop Nav Links */}

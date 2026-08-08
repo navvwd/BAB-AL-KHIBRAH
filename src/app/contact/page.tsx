@@ -25,7 +25,8 @@ export default function ContactDesk() {
 }
 
 function ContactDeskInner() {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, language } = useLanguage();
+  const isAr = language === "ar";
   const searchParams = useSearchParams();
   const gradeQuery = searchParams.get("grade");
   const serviceQuery = searchParams.get("service");
@@ -362,73 +363,81 @@ function ContactDeskInner() {
                     <div className="flex border-b border-border pb-4">
                       <button
                         onClick={() => setActiveTab("rfq")}
-                        className={`font-display text-sm font-bold uppercase tracking-wider pb-2 border-b-2 mr-6 transition-all ${
+                        className={`font-display text-base sm:text-lg font-extrabold uppercase tracking-wider pb-3 border-b-2 mr-6 sm:mr-8 transition-all ${
                           activeTab === "rfq" ? "border-orange text-orange" : "border-transparent text-steel hover:text-foreground"
                         }`}
                       >
-                        Detailed Material RFQ
+                        {isAr ? "طلب عرض سعر مفصل للخامات" : "Detailed Material RFQ"}
                       </button>
                       <button
                         onClick={() => setActiveTab("general")}
-                        className={`font-display text-sm font-bold uppercase tracking-wider pb-2 border-b-2 transition-all ${
+                        className={`font-display text-base sm:text-lg font-extrabold uppercase tracking-wider pb-3 border-b-2 transition-all ${
                           activeTab === "general" ? "border-orange text-orange" : "border-transparent text-steel hover:text-foreground"
                         }`}
                       >
-                        General Message Desk
+                        {isAr ? "منصة الرسائل الاستفسارية" : "General Message Desk"}
                       </button>
                     </div>
 
                     {/* Detailed RFQ Form */}
                     {activeTab === "rfq" && (
-                      <form onSubmit={handleRfqSubmit} className="space-y-6">
+                      <form onSubmit={handleRfqSubmit} className="space-y-7">
                         
                         {/* Section 1: B2B Contact Info */}
                         <div className="space-y-4">
-                          <span className="font-mono text-[9px] text-orange uppercase tracking-widest block font-bold border-b border-border pb-1">
-                            Step 1: Company Contact Details
+                          <span className="font-mono text-xs sm:text-sm text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
+                            {isAr ? "الخطوة 1: بيانات تواصل الشركة" : "Step 1: Company Contact Details"}
                           </span>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Contact Name *</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "اسم المسؤول *" : "Contact Name *"}
+                              </label>
                               <input
                                 type="text"
                                 required
                                 value={rfqForm.name}
                                 onChange={e => setRfqForm({...rfqForm, name: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                                 placeholder="E.g. John Doe"
                               />
                             </div>
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Company Name *</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "اسم الشركة *" : "Company Name *"}
+                              </label>
                               <input
                                 type="text"
                                 required
                                 value={rfqForm.companyName}
                                 onChange={e => setRfqForm({...rfqForm, companyName: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                                 placeholder="E.g. Precision Machining LLC"
                               />
                             </div>
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Email Address *</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "البريد الإلكتروني *" : "Email Address *"}
+                              </label>
                               <input
                                 type="email"
                                 required
                                 value={rfqForm.email}
                                 onChange={e => setRfqForm({...rfqForm, email: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                                 placeholder="E.g. buyer@company.com"
                               />
                             </div>
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Phone Number *</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "رقم الجوال / الهاتف *" : "Phone Number *"}
+                              </label>
                               <input
                                 type="tel"
                                 required
                                 value={rfqForm.phone}
                                 onChange={e => setRfqForm({...rfqForm, phone: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                                 placeholder="E.g. +971 50 123 4567"
                               />
                             </div>
@@ -436,21 +445,23 @@ function ContactDeskInner() {
                         </div>
 
                         {/* Section 2: Material Specifications */}
-                        <div className="space-y-4 pt-4 border-t border-border">
-                          <span className="font-mono text-[9px] text-orange uppercase tracking-widest block font-bold border-b border-border pb-1">
-                            Step 2: Material Specifications
+                        <div className="space-y-4 pt-5 border-t border-border">
+                          <span className="font-mono text-xs sm:text-sm text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
+                            {isAr ? "الخطوة 2: مواصفات الفولاذ المطلوب" : "Step 2: Material Specifications"}
                           </span>
                           
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                             {/* Material Family */}
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Material Family</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "عائلة الخامة" : "Material Family"}
+                              </label>
                               <select
                                 value={rfqForm.materialFamily}
                                 onChange={e => setRfqForm({...rfqForm, materialFamily: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-[#D65A24] transition-colors"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-[#D65A24] transition-colors"
                               >
-                                <option value="All">Select Product...</option>
+                                <option value="All">{isAr ? "اختر نوع المنتج..." : "Select Product..."}</option>
                                 <option value="Medium Carbon Steel">Medium Carbon Steel (EN8 / C45 / C45E)</option>
                                 <option value="Hard Chrome Plated Bar">Hard Chrome Plated Bar (C45E / CK45)</option>
                                 <option value="Tool Steel">Tool Steel (D2 / P20 / 1.2379 / 1.2311)</option>
@@ -462,24 +473,28 @@ function ContactDeskInner() {
 
                             {/* Grade */}
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Target Grade *</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "العيار المطلوب *" : "Target Grade *"}
+                              </label>
                               <input
                                 type="text"
                                 required
                                 value={rfqForm.grade}
                                 onChange={e => setRfqForm({...rfqForm, grade: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                                 placeholder="E.g. EN19, 4140, D2"
                               />
                             </div>
 
                             {/* Shape / Form */}
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Material Shape</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "شكل الخامة" : "Material Shape"}
+                              </label>
                               <select
                                 value={rfqForm.form}
                                 onChange={e => setRfqForm({...rfqForm, form: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                               >
                                 {shapes.map(s => (
                                   <option key={s} value={s}>{s}</option>
@@ -489,21 +504,23 @@ function ContactDeskInner() {
                           </div>
 
                           {/* Dynamic Dimension Inputs based on shape */}
-                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-background border border-border p-4 rounded-sm">
-                            <span className="col-span-full font-mono text-[9px] text-steel uppercase block border-b border-border pb-1 mb-1">
-                              Enter Dimensions (mm)
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-background border border-border p-5 rounded-sm">
+                            <span className="col-span-full font-mono text-xs sm:text-xs text-orange font-bold uppercase tracking-wider block border-b border-border pb-1.5 mb-2">
+                              {isAr ? "أدخل الأبعاد (مم)" : "Enter Dimensions (mm)"}
                             </span>
 
                             {/* Diameter - shown for round bars, rods, pipes */}
                             {(rfqForm.form === "Round bars" || rfqForm.form === "Rods" || rfqForm.form === "Pipes") && (
                               <div>
-                                <label className="block font-mono text-[9px] text-steel uppercase mb-1">Diameter (ø)</label>
+                                <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-1.5">
+                                  {isAr ? "القطر (Ø)" : "Diameter (ø)"}
+                                </label>
                                 <input
                                   type="text"
                                   placeholder="E.g. 50"
                                   value={rfqForm.diameter}
                                   onChange={e => setRfqForm({...rfqForm, diameter: e.target.value})}
-                                  className="w-full font-sans text-xs bg-graphite border border-steel/25 rounded-sm p-2 text-foreground focus:outline-none focus:border-orange"
+                                  className="w-full font-sans text-sm bg-graphite border border-steel/25 rounded-sm p-3 text-foreground font-medium focus:outline-none focus:border-orange"
                                 />
                               </div>
                             )}
@@ -511,13 +528,15 @@ function ContactDeskInner() {
                             {/* Thickness - shown for plates, blocks, cut pieces */}
                             {(rfqForm.form === "Plates" || rfqForm.form === "Blocks" || rfqForm.form === "Cut pieces") && (
                               <div>
-                                <label className="block font-mono text-[9px] text-steel uppercase mb-1">Thickness (T)</label>
+                                <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-1.5">
+                                  {isAr ? "السمك (T)" : "Thickness (T)"}
+                                </label>
                                 <input
                                   type="text"
                                   placeholder="E.g. 20"
                                   value={rfqForm.thickness}
                                   onChange={e => setRfqForm({...rfqForm, thickness: e.target.value})}
-                                  className="w-full font-sans text-xs bg-graphite border border-steel/25 rounded-sm p-2 text-foreground focus:outline-none focus:border-orange"
+                                  className="w-full font-sans text-sm bg-graphite border border-steel/25 rounded-sm p-3 text-foreground font-medium focus:outline-none focus:border-orange"
                                 />
                               </div>
                             )}
@@ -525,102 +544,116 @@ function ContactDeskInner() {
                             {/* Width - shown for plates, blocks, cut pieces */}
                             {(rfqForm.form === "Plates" || rfqForm.form === "Blocks" || rfqForm.form === "Cut pieces") && (
                               <div>
-                                <label className="block font-mono text-[9px] text-steel uppercase mb-1">Width (W)</label>
+                                <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-1.5">
+                                  {isAr ? "العرض (W)" : "Width (W)"}
+                                </label>
                                 <input
                                   type="text"
                                   placeholder="E.g. 100"
                                   value={rfqForm.width}
                                   onChange={e => setRfqForm({...rfqForm, width: e.target.value})}
-                                  className="w-full font-sans text-xs bg-graphite border border-steel/25 rounded-sm p-2 text-foreground focus:outline-none focus:border-orange"
+                                  className="w-full font-sans text-sm bg-graphite border border-steel/25 rounded-sm p-3 text-foreground font-medium focus:outline-none focus:border-orange"
                                 />
                               </div>
                             )}
 
                             {/* Length - shown for all */}
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1">Length (L)</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-1.5">
+                                {isAr ? "الطول (L)" : "Length (L)"}
+                              </label>
                               <input
                                 type="text"
                                 placeholder="E.g. 300"
                                 value={rfqForm.length}
                                 onChange={e => setRfqForm({...rfqForm, length: e.target.value})}
-                                className="w-full font-sans text-xs bg-graphite border border-steel/25 rounded-sm p-2 text-foreground focus:outline-none focus:border-orange"
+                                className="w-full font-sans text-sm bg-graphite border border-steel/25 rounded-sm p-3 text-foreground font-medium focus:outline-none focus:border-orange"
                               />
                             </div>
 
                             {/* Quantity & Unit */}
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1">Quantity</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-1.5">
+                                {isAr ? "الكمية *" : "Quantity *"}
+                              </label>
                               <input
                                 type="text"
                                 required
                                 placeholder="E.g. 10"
                                 value={rfqForm.quantity}
                                 onChange={e => setRfqForm({...rfqForm, quantity: e.target.value})}
-                                className="w-full font-sans text-xs bg-graphite border border-steel/25 rounded-sm p-2 text-foreground focus:outline-none focus:border-orange"
+                                className="w-full font-sans text-sm bg-graphite border border-steel/25 rounded-sm p-3 text-foreground font-medium focus:outline-none focus:border-orange"
                               />
                             </div>
 
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1">Unit</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-1.5">
+                                {isAr ? "الوحدة" : "Unit"}
+                              </label>
                               <select
                                 value={rfqForm.unit}
                                 onChange={e => setRfqForm({...rfqForm, unit: e.target.value as any})}
-                                className="w-full font-sans text-xs bg-graphite border border-steel/25 rounded-sm p-2 text-foreground focus:outline-none focus:border-orange"
+                                className="w-full font-sans text-sm bg-graphite border border-steel/25 rounded-sm p-3 text-foreground font-medium focus:outline-none focus:border-orange"
                               >
-                                <option value="pcs">Pieces (pcs)</option>
-                                <option value="kgs">Kilograms (kgs)</option>
-                                <option value="tons">Metric Tons (tons)</option>
+                                <option value="pcs">{isAr ? "قطع (pcs)" : "Pieces (pcs)"}</option>
+                                <option value="kgs">{isAr ? "كيلوجرام (kgs)" : "Kilograms (kgs)"}</option>
+                                <option value="tons">{isAr ? "طن متري (tons)" : "Metric Tons (tons)"}</option>
                               </select>
                             </div>
                           </div>
                         </div>
 
                         {/* Section 3: Processing & Quality */}
-                        <div className="space-y-4 pt-4 border-t border-border">
-                          <span className="font-mono text-[9px] text-orange uppercase tracking-widest block font-bold border-b border-border pb-1">
-                            Step 3: Sizing & Quality Controls
+                        <div className="space-y-4 pt-5 border-t border-border">
+                          <span className="font-mono text-xs sm:text-sm text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
+                            {isAr ? "الخطوة 3: الأبعاد والشهادات وشروط التوريد" : "Step 3: Sizing & Quality Controls"}
                           </span>
 
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                             {/* Cutting spec */}
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Sizing Requirement</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "متطلبات القص والتفصيل" : "Sizing Requirement"}
+                              </label>
                               <select
                                 value={rfqForm.cuttingRequirement}
                                 onChange={e => setRfqForm({...rfqForm, cuttingRequirement: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange"
                               >
-                                <option value="Full lengths">Full Lengths (6 meters)</option>
-                                <option value="Bandsaw cut to size">In-House Bandsaw Sizing</option>
-                                <option value="Oxy-fuel flame cut">Oxy-Fuel Profile Cut</option>
-                                <option value="Custom cutting required">Special Cut-To-Size Details</option>
+                                <option value="Full lengths">{isAr ? "أطوال كاملة (6 أمتار)" : "Full Lengths (6 meters)"}</option>
+                                <option value="Bandsaw cut to size">{isAr ? "قص ميكانيكي بالمنشار" : "In-House Bandsaw Sizing"}</option>
+                                <option value="Oxy-fuel flame cut">{isAr ? "قص حراري بالأكسجين" : "Oxy-Fuel Profile Cut"}</option>
+                                <option value="Custom cutting required">{isAr ? "تفاصيل قص مخصصة" : "Special Cut-To-Size Details"}</option>
                               </select>
                             </div>
 
                             {/* Certificates */}
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Certificate Spec</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "معيار الشهادة المعتمدة" : "Certificate Spec"}
+                              </label>
                               <select
                                 value={rfqForm.certificateRequirement}
                                 onChange={e => setRfqForm({...rfqForm, certificateRequirement: e.target.value as any})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange"
                               >
-                                <option value="MTC 3.1">Mill Test Certificate EN10204 3.1</option>
-                                <option value="Third-Party">Third-Party Witness Stamp (LR/BV/SGS)</option>
-                                <option value="None">Commercial Sourcing standard</option>
+                                <option value="MTC 3.1">{isAr ? "شهادة مصنع EN10204 3.1" : "Mill Test Certificate EN10204 3.1"}</option>
+                                <option value="Third-Party">{isAr ? "ختم فحص طرف ثالث (LR/BV/SGS)" : "Third-Party Witness Stamp (LR/BV/SGS)"}</option>
+                                <option value="None">{isAr ? "معيار توريد تجاري" : "Commercial Sourcing standard"}</option>
                               </select>
                             </div>
 
                             {/* Delivery location */}
                             <div>
-                              <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Delivery City (UAE/GCC)</label>
+                              <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                                {isAr ? "مدينة التوريد (الإمارات/الخليج)" : "Delivery City (UAE/GCC)"}
+                              </label>
                               <input
                                 type="text"
                                 required
                                 value={rfqForm.deliveryLocation}
                                 onChange={e => setRfqForm({...rfqForm, deliveryLocation: e.target.value})}
-                                className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange"
+                                className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange"
                                 placeholder="E.g. Sharjah Yard, Jebel Ali, Riyadh"
                               />
                             </div>
@@ -628,12 +661,12 @@ function ContactDeskInner() {
                         </div>
 
                         {/* Section 4: Secure File Uploader */}
-                        <div className="space-y-4 pt-4 border-t border-border">
-                          <span className="font-mono text-[9px] text-[#D65A24] uppercase tracking-widest block font-bold border-b border-border pb-1">
-                            Step 4: CAD Drawings & Specifications (Optional)
+                        <div className="space-y-4 pt-5 border-t border-border">
+                          <span className="font-mono text-xs sm:text-sm text-[#D65A24] uppercase tracking-widest block font-bold border-b border-border pb-2">
+                            {isAr ? "الخطوة 4: المخططات الهندسية CAD (اختياري)" : "Step 4: CAD Drawings & Specifications (Optional)"}
                           </span>
 
-                          <div className="border border-dashed border-steel/30 rounded-sm p-6 text-center hover:border-orange transition-colors relative bg-background">
+                          <div className="border border-dashed border-steel/30 rounded-sm p-7 text-center hover:border-orange transition-colors relative bg-background">
                             <input
                               type="file"
                               multiple
@@ -641,17 +674,17 @@ function ContactDeskInner() {
                               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                               title="Upload CAD drawings"
                             />
-                            <Upload className="w-8 h-8 text-steel mx-auto mb-2 opacity-70" />
-                            <p className="font-sans text-xs text-foreground/80 font-semibold mb-1">
-                              Drag & Drop files or Click to select
+                            <Upload className="w-9 h-9 text-[#D65A24] mx-auto mb-2 opacity-80" />
+                            <p className="font-sans text-sm text-foreground font-semibold mb-1">
+                              {isAr ? "اسحب الملفات هنا أو انقر للاختيار" : "Drag & Drop files or Click to select"}
                             </p>
-                            <p className="font-mono text-[9px] text-steel leading-relaxed">
+                            <p className="font-mono text-xs text-steel leading-relaxed">
                               ACCEPTED: PDF, DWG, DXF, STEP, XLSX, CSV, JPG, PNG (MAX size: 15MB)
                             </p>
                           </div>
 
                           {fileError && (
-                            <div className="flex items-center space-x-2 bg-orange/5 border border-orange/20 p-2.5 rounded-sm text-[11px] text-orange">
+                            <div className="flex items-center space-x-2 bg-orange/5 border border-orange/20 p-3 rounded-sm text-xs text-orange">
                               <AlertCircle className="w-4 h-4 shrink-0" />
                               <span>{fileError}</span>
                             </div>
@@ -659,18 +692,18 @@ function ContactDeskInner() {
 
                           {/* List of uploaded files */}
                           {uploadedFiles.length > 0 && (
-                            <div className="space-y-1.5">
+                            <div className="space-y-2">
                               {uploadedFiles.map((file, idx) => (
-                                <div key={idx} className="flex items-center justify-between bg-background border border-border p-2 rounded-sm text-xs">
+                                <div key={idx} className="flex items-center justify-between bg-background border border-border p-3 rounded-sm text-xs">
                                   <div className="flex items-center space-x-2 text-steel">
                                     <FileText className="w-4 h-4 text-orange" />
-                                    <span className="truncate text-foreground/90 max-w-xs">{file.name}</span>
+                                    <span className="truncate text-foreground font-semibold max-w-xs">{file.name}</span>
                                     <span>({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
                                   </div>
                                   <button
                                     type="button"
                                     onClick={() => removeFile(idx)}
-                                    className="text-orange hover:text-white font-mono text-[10px] uppercase font-bold"
+                                    className="text-orange hover:text-white font-mono text-xs uppercase font-bold"
                                   >
                                     Delete
                                   </button>
@@ -680,26 +713,28 @@ function ContactDeskInner() {
                           )}
                         </div>
 
-                        <div className="space-y-4 pt-4 border-t border-border">
+                        <div className="space-y-4 pt-5 border-t border-border">
                           <div>
-                            <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Additional Notes / Tolerances</label>
+                            <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                              {isAr ? "ملاحظات إضافية / التسامحات المطلوبة" : "Additional Notes / Tolerances"}
+                            </label>
                             <textarea
-                              rows={3}
+                              rows={4}
                               value={rfqForm.additionalNotes}
                               onChange={e => setRfqForm({...rfqForm, additionalNotes: e.target.value})}
-                              className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange"
+                              className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange"
                               placeholder="Describe custom tolerances, certification rules, or delivery requirements."
                             />
                           </div>
                         </div>
 
                         {/* Submit */}
-                        <div className="pt-2">
+                        <div className="pt-3">
                           <button
                             type="submit"
-                            className="font-sans text-xs font-bold uppercase tracking-wider bg-blue hover:bg-blue/90 text-white w-full py-4 rounded-sm transition-all shadow-md shadow-orange/10 hover:shadow-orange/20"
+                            className="font-sans text-sm sm:text-base font-extrabold uppercase tracking-wider bg-blue hover:bg-blue/90 text-white w-full py-4.5 rounded-sm transition-all shadow-md shadow-orange/10 hover:shadow-orange/20 cursor-pointer"
                           >
-                            Submit B2B RFQ Desk
+                            {isAr ? "إرسال طلب عرض السعر للمكتب" : "Submit B2B RFQ Desk"}
                           </button>
                         </div>
                       </form>
@@ -707,80 +742,92 @@ function ContactDeskInner() {
 
                     {/* General Contact Form */}
                     {activeTab === "general" && (
-                      <form onSubmit={handleGeneralSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <form onSubmit={handleGeneralSubmit} className="space-y-7">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                           <div>
-                            <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Name *</label>
+                            <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                              {isAr ? "اسم المسؤول *" : "Name *"}
+                            </label>
                             <input
                               type="text"
                               required
                               value={generalForm.name}
                               onChange={e => setGeneralForm({...generalForm, name: e.target.value})}
-                              className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                              className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                               placeholder="E.g. John Doe"
                             />
                           </div>
                           <div>
-                            <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Company</label>
+                            <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                              {isAr ? "اسم الشركة" : "Company"}
+                            </label>
                             <input
                               type="text"
                               value={generalForm.company}
                               onChange={e => setGeneralForm({...generalForm, company: e.target.value})}
-                              className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                              className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                               placeholder="E.g. Steel Fabricators LLC"
                             />
                           </div>
                           <div>
-                            <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Email *</label>
+                            <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                              {isAr ? "البريد الإلكتروني *" : "Email *"}
+                            </label>
                             <input
                               type="email"
                               required
                               value={generalForm.email}
                               onChange={e => setGeneralForm({...generalForm, email: e.target.value})}
-                              className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                              className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                               placeholder="E.g. info@company.com"
                             />
                           </div>
                           <div>
-                            <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Phone Number</label>
+                            <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                              {isAr ? "رقم الجوال / الهاتف" : "Phone Number"}
+                            </label>
                             <input
                               type="tel"
                               value={generalForm.phone}
                               onChange={e => setGeneralForm({...generalForm, phone: e.target.value})}
-                              className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                              className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                               placeholder="E.g. +971 50 575 1347"
                             />
                           </div>
                           <div className="col-span-full">
-                            <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Subject</label>
+                            <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                              {isAr ? "موضوع الاستفسار" : "Subject"}
+                            </label>
                             <input
                               type="text"
                               value={generalForm.subject}
                               onChange={e => setGeneralForm({...generalForm, subject: e.target.value})}
-                              className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange transition-colors"
+                              className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange transition-colors"
                               placeholder="Describe your inquiry briefly..."
                             />
                           </div>
                           <div className="col-span-full">
-                            <label className="block font-mono text-[9px] text-steel uppercase mb-1.5">Message *</label>
+                            <label className="block font-mono text-xs text-foreground/80 font-bold uppercase mb-2">
+                              {isAr ? "نص الرسالة *" : "Message *"}
+                            </label>
                             <textarea
                               rows={5}
                               required
                               value={generalForm.message}
                               onChange={e => setGeneralForm({...generalForm, message: e.target.value})}
-                              className="w-full font-sans text-xs bg-background border border-border rounded-sm p-3 text-foreground focus:outline-none focus:border-orange"
+                              className="w-full font-sans text-sm sm:text-base bg-background border border-border rounded-sm p-3.5 sm:p-4 text-foreground font-medium focus:outline-none focus:border-orange"
                               placeholder="Type your message here..."
                             />
                           </div>
                         </div>
 
                         {/* Submit */}
-                        <div className="pt-2">
+                        <div className="pt-3">
                           <button
                             type="submit"
-                            className="font-sans text-xs font-bold uppercase tracking-wider bg-blue hover:bg-blue/90 text-white w-full py-4 rounded-sm transition-all"
+                            className="font-sans text-sm sm:text-base font-extrabold uppercase tracking-wider bg-blue hover:bg-blue/90 text-white w-full py-4.5 rounded-sm transition-all cursor-pointer shadow-md"
                           >
-                            Send General Inquiry Message
+                            {isAr ? "إرسال الرسالة للمكتب" : "Send General Inquiry Message"}
                           </button>
                         </div>
                       </form>

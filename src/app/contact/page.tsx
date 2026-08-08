@@ -169,7 +169,8 @@ function ContactDeskInner() {
         body: JSON.stringify({
           formType: "rfq",
           refNum,
-          ...rfqForm
+          ...rfqForm,
+          notes: rfqForm.additionalNotes
         })
       }).catch(err => console.error("Google Script post error:", err));
     }

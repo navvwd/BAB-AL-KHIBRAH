@@ -24,7 +24,7 @@ export default function HomeRFQ() {
             
             {/* Left Content (8 Cols) */}
             <div className="lg:col-span-8 space-y-6">
-              <span className="font-mono text-xs uppercase tracking-widest text-orange font-semibold block">
+              <span className="font-mono text-sm sm:text-base uppercase tracking-widest text-orange font-bold block">
                 {t("rfqTag")}
               </span>
               <h2 className="font-display text-2xl sm:text-4xl font-black text-foreground leading-tight">

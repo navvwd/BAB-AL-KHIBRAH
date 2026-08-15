@@ -109,15 +109,15 @@ export default function Footer() {
                 <span className="font-display text-[10px] uppercase tracking-widest text-steel block">
                   {t("salesCoordinates")}
                 </span>
-                <div className="space-y-1.5">
-                  <a href="tel:+971505751347" className="text-steel hover:text-[#D65A24] transition-colors flex items-center space-x-2 text-xs">
+                <div className="space-y-1.5 text-xs text-steel">
+                  <div className="flex items-center space-x-2">
                     <Phone className="w-3.5 h-3.5 shrink-0 text-[#D65A24]" />
-                    <span>+971 50 575 1347</span>
-                  </a>
-                  <a href="mailto:kaleel@babalkhibrah.com" className="text-steel hover:text-[#D65A24] transition-colors flex items-center space-x-2 text-xs">
+                    <span><a href="tel:+971505751347" className="hover:text-[#D65A24] transition-colors">+971 50 575 1347</a> | <a href="tel:+9710564467949" className="hover:text-[#D65A24] transition-colors">+971 056 446 7949</a></span>
+                  </div>
+                  <div className="flex items-center space-x-2">
                     <Mail className="w-3.5 h-3.5 shrink-0 text-[#D65A24]" />
-                    <span>kaleel@babalkhibrah.com</span>
-                  </a>
+                    <span><a href="mailto:kaleel@babalkhibrah.com" className="hover:text-[#D65A24] transition-colors">kaleel@babalkhibrah.com</a> | <a href="mailto:sales@babalkhibrah.com" className="hover:text-[#D65A24] transition-colors">sales@babalkhibrah.com</a></span>
+                  </div>
                 </div>
               </div>
             </div>

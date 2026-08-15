@@ -63,7 +63,7 @@ export const translations = {
     // About Us Page (Official Text)
     whoWeAreTitle: "Who We Are",
     whoWeAreP1: "Bab Al Khibrah Trading LLC is a company specialized in selling Engineering steels & Alloys to Engineering machine shops, Tool making, Machine spare parts manufacturing, Transport industries and various Heavy engineering industries in UAE and Middle East markets.",
-    whoWeAreP2: "Founded in 2015 in Sharjah, UAE with state of the art processing equipments. Our warehouse are equipped with Overhead crane with lifting capacity of up to (5) tonnes, Forklift, Band saw cutting machine, Oxy-fuel cutting machine, Portable cutting machine, Small and Large Pickups. Our office is located in our yard of 3600 sq. ft.",
+    whoWeAreP2: "Founded in 2015 in Sharjah, UAE with state of the art processing equipments. Our warehouse are equipped with Overhead crane with lifting capacity of up to (5) tonnes, Forklift, Band saw cutting machine, Oxy-fuel cutting machine, Portable cutting machine, Small and Large Pickups.",
     whoWeAreP3: "We have a team of an experienced professionals working within our company to offer you a better sales & services.",
 
     prodServicesTitle: "Products & Services",
@@ -200,7 +200,7 @@ export const translations = {
     phoneSupport: "Phone & WhatsApp Support",
     enquiryEmail: "Enquiry Email",
     yardLocation: "Sharjah Yard Location",
-    yardLocationAddress: "Office #1, Al Saja'a Industrial Area, Sharjah, United Arab Emirates (P.O. Box 24891)",
+    yardLocationAddress: "Emirates Industrial City, Office #1, Al Saja'a Industrial Area, Sharjah, United Arab Emirates (P.O. Box 24891)",
     operatingHours: "Operating Hours",
     workDays: "Saturday – Friday",
     workHours: "8:00 AM – 6:00 PM",
@@ -210,7 +210,7 @@ export const translations = {
     step1Title: "STEP 1: COMPANY CONTACT DETAILS",
     step2Title: "STEP 2: MATERIAL SPECIFICATIONS",
     step3Title: "STEP 3: DIMENSIONS & QUANTITY",
-    step4Title: "STEP 4: CAD DRAWINGS & SPECIFICATIONS (OPTIONAL)",
+
 
     contactName: "Contact Name",
     companyName: "Company Name",
@@ -307,7 +307,7 @@ export const translations = {
     // About Us Page (Official Text)
     whoWeAreTitle: "من نحن",
     whoWeAreP1: "شركة باب الخبرة لتجارة الصلب ش.ذ.م.م هي شركة متخصصة في بيع وتوريد صلب الهندسة والسبائك لورش الخراطة الهندسية، صناعة الأدوات والقوالب، تصنيع قطع غيار الماكينات، قطاعات النقل، ومختلف الصناعات الهندسية الثقيلة في أسواق الإمارات والشرق الأوسط.",
-    whoWeAreP2: "تأسست عام 2015 في الشارقة، الإمارات، وأُثثت بأحدث معدات التجهيز والقص. مستودعنا مجهز برافعات علوية تصل حمولتها إلى (5) أطنان، رافعات شوكية، ماكينات قص بالمنشار الميكانيكي البارد، ماكينات قص حراري بالأكسجين والغاز، ماكينات قص محمولة، وشاحنات نقل صغيرة وثقيلة. يقع مكتبنا في ساحتنا بمساحة 3,600 قدم مربع.",
+    whoWeAreP2: "تأسست عام 2015 في الشارقة، الإمارات، وأُثثت بأحدث معدات التجهيز والقص. مستودعنا مجهز برافعات علوية تصل حمولتها إلى (5) أطنان، رافعات شوكية، ماكينات قص بالمنشار الميكانيكي البارد، ماكينات قص حراري بالأكسجين والغاز، ماكينات قص محمولة، وشاحنات نقل صغيرة وثقيلة.",
     whoWeAreP3: "لدينا فريق من المحترفين وذوي الخبرة للعمل على تقديم أفضل خدمات المبيعات والدعم لعملائنا.",
 
     prodServicesTitle: "المنتجات والخدمات",
@@ -444,7 +444,7 @@ export const translations = {
     phoneSupport: "الدعم الهاتفي والواتساب",
     enquiryEmail: "البريد الإلكتروني للاستفسارات",
     yardLocation: "موقع مستودع الشارقة",
-    yardLocationAddress: "المكتب رقم 1، منطقة الصجعة الصناعية، الشارقة، الإمارات العربية المتحدة (ص.ب 24891)",
+    yardLocationAddress: "مدينة الإمارات الصناعية، المكتب رقم 1، منطقة الصجعة الصناعية، الشارقة، الإمارات العربية المتحدة (ص.ب 24891)",
     operatingHours: "أوقات العمل",
     workDays: "من السبت إلى الجمعة",
     workHours: "8:00 صباحاً – 6:00 مساءً",
@@ -454,7 +454,7 @@ export const translations = {
     step1Title: "الخطوة 1: بيانات تواصل الشركة",
     step2Title: "الخطوة 2: مواصفات الفولاذ المطلوب",
     step3Title: "الخطوة 3: الأبعاد والكمية",
-    step4Title: "الخطوة 4: المخططات الهندسية CAD (اختياري)",
+
 
     contactName: "اسم المسؤول",
     companyName: "اسم الشركة",

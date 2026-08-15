@@ -67,10 +67,6 @@ function ContactDeskInner() {
     additionalNotes: ""
   });
 
-  // File Upload State
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [fileError, setFileError] = useState("");
-
   // General Contact State
   const [generalForm, setGeneralForm] = useState({
     name: "",
@@ -104,40 +100,8 @@ function ContactDeskInner() {
     }
   }, [gradeQuery, serviceQuery, familyQuery]);
 
-  // File Validation
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFileError("");
-    const files = e.target.files;
-    if (!files) return;
-
-    const newFiles: File[] = [];
-    const allowedExtensions = ["pdf", "dwg", "dxf", "step", "xlsx", "csv", "jpg", "png"];
-    const maxSizeBytes = 15 * 1024 * 1024; // 15MB
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const extension = file.name.split(".").pop()?.toLowerCase();
-      
-      if (!extension || !allowedExtensions.includes(extension)) {
-        setFileError(`Invalid file format: .${extension}. Only PDF, DWG, DXF, STEP, Excel (XLSX/CSV), and JPEGs are accepted.`);
-        return;
-      }
-
-      if (file.size > maxSizeBytes) {
-        setFileError(`File too large: ${file.name} (Max size: 15MB).`);
-        return;
-      }
-      newFiles.push(file);
-    }
-    setUploadedFiles(prev => [...prev, ...newFiles]);
-  };
-
-  const removeFile = (idx: number) => {
-    setUploadedFiles(prev => prev.filter((_, i) => i !== idx));
-  };
-
   // RFQ Submit Handler
-  const handleRfqSubmit = (e: React.FormEvent) => {
+  const handleRfqSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Simple verification
@@ -160,7 +124,7 @@ function ContactDeskInner() {
     setRfqSummaryForWhatsApp(encodeURIComponent(waText));
 
     // Async post to Google Apps Script (Sheet1) if Web App URL configured
-    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbz4DpulmIhOIFa3k6ENelP4NBO6qNxtxcd7qR-SVxPdudNsfusvPi7v5O4xQFcRMkPv/exec";
+    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbzlJho2us9B0zTfYGGDfuO9Qj6214205VjfRYsRm4JqOXEi_5ApryKDPXO5OK8eF_Z0/exec";
     if (scriptUrl) {
       fetch(scriptUrl, {
         method: "POST",
@@ -170,7 +134,8 @@ function ContactDeskInner() {
           formType: "rfq",
           refNum,
           ...rfqForm,
-          notes: rfqForm.additionalNotes
+          notes: rfqForm.additionalNotes,
+          files: []
         })
       }).catch(err => console.error("Google Script post error:", err));
     }
@@ -200,7 +165,7 @@ function ContactDeskInner() {
     setRfqSummaryForWhatsApp(encodeURIComponent(waText));
 
     // Async post to Google Apps Script (Sheet2) if Web App URL configured
-    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbz4DpulmIhOIFa3k6ENelP4NBO6qNxtxcd7qR-SVxPdudNsfusvPi7v5O4xQFcRMkPv/exec";
+    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbzlJho2us9B0zTfYGGDfuO9Qj6214205VjfRYsRm4JqOXEi_5ApryKDPXO5OK8eF_Z0/exec";
     if (scriptUrl) {
       fetch(scriptUrl, {
         method: "POST",
@@ -243,9 +208,6 @@ function ContactDeskInner() {
             {/* Left Column Contact Details (4 Cols) */}
             <div className="lg:col-span-4 space-y-8">
               <div className="space-y-4">
-                <span className="font-mono text-xs text-orange uppercase tracking-wider block">
-                  {t("salesCoordinates")}
-                </span>
                 <h1 className="font-display text-4xl font-black text-foreground leading-none">
                   {t("contactHeader")}
                 </h1>
@@ -255,35 +217,40 @@ function ContactDeskInner() {
               </div>
 
               {/* Direct Contacts List */}
-              <div className="bg-graphite border border-border p-6 rounded-sm space-y-6">
-                <span className="font-mono text-[9px] text-steel uppercase tracking-widest block border-b border-border pb-2">
-                  {t("salesCoordinates")}
-                </span>
-
-                <div className="space-y-4 font-sans text-xs">
+              <div className="bg-graphite border border-border p-6 sm:p-7 rounded-sm space-y-6">
+                <div className="space-y-6 font-sans text-sm">
                   <div className="flex items-start space-x-3.5">
-                    <Phone className="w-5 h-5 text-orange shrink-0" />
-                    <div>
-                      <span className="block font-bold text-foreground">Phone & WhatsApp Support</span>
-                      <a href="tel:+971505751347" className="text-steel hover:text-orange transition-colors block mt-0.5">Mobile: +971 50 575 1347</a>
-                      <a href="https://wa.me/971505751347" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:underline transition-colors block mt-0.5 font-semibold">WhatsApp: +971 50 575 1347</a>
+                    <Phone className="w-6 h-6 text-orange shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <span className="block font-bold text-foreground text-sm sm:text-base">Phone &amp; WhatsApp Support</span>
+                      <div className="text-steel text-xs sm:text-sm leading-relaxed">
+                        Mobile: <a href="tel:+971505751347" className="hover:text-orange transition-colors font-medium text-foreground/90">+971 50 575 1347</a> | <a href="tel:+9710564467949" className="hover:text-orange transition-colors font-medium text-foreground/90">+971 056 446 7949</a>
+                      </div>
+                      <div className="text-steel text-xs sm:text-sm leading-relaxed">
+                        Telephone: <a href="tel:+97165735949" className="hover:text-orange transition-colors font-medium text-foreground/90">+971 65 735 949</a>
+                      </div>
+                      <a href="https://wa.me/971505751347" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:underline transition-colors block font-bold text-xs sm:text-sm pt-0.5">
+                        WhatsApp: +971 50 575 1347
+                      </a>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-3.5">
-                    <Mail className="w-5 h-5 text-orange shrink-0" />
-                    <div>
-                      <span className="block font-bold text-foreground">Enquiry Email</span>
-                      <a href="mailto:kaleel@babalkhibrah.com" className="text-steel hover:text-orange transition-colors block mt-0.5">kaleel@babalkhibrah.com</a>
+                    <Mail className="w-6 h-6 text-orange shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <span className="block font-bold text-foreground text-sm sm:text-base">Enquiry Email</span>
+                      <div className="text-steel text-xs sm:text-sm leading-relaxed">
+                        <a href="mailto:kaleel@babalkhibrah.com" className="hover:text-orange transition-colors font-medium text-foreground/90">kaleel@babalkhibrah.com</a> | <a href="mailto:sales@babalkhibrah.com" className="hover:text-orange transition-colors font-medium text-foreground/90">sales@babalkhibrah.com</a>
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-3.5">
-                    <MapPin className="w-5 h-5 text-orange shrink-0" />
-                    <div>
-                      <span className="block font-bold text-foreground">Sharjah Yard Location</span>
-                      <p className="text-steel leading-relaxed mt-0.5">
-                        Office #1, Al Saja'a Industrial Area, Sharjah, United Arab Emirates (P.O. Box 24891)
+                    <MapPin className="w-6 h-6 text-orange shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <span className="block font-bold text-foreground text-sm sm:text-base">Sharjah Yard Location</span>
+                      <p className="text-steel text-xs sm:text-sm leading-relaxed">
+                        Emirates Industrial City,Office #1, Al Saja'a Industrial Area, Sharjah, United Arab Emirates (P.O. Box 24891)
                       </p>
                     </div>
                   </div>
@@ -351,7 +318,6 @@ function ContactDeskInner() {
                     <button
                       onClick={() => {
                         setIsSubmitted(false);
-                        setUploadedFiles([]);
                       }}
                       className="font-sans text-xs text-steel hover:text-foreground transition-colors border-b border-border hover:border-foreground"
                     >
@@ -386,7 +352,7 @@ function ContactDeskInner() {
                         
                         {/* Section 1: B2B Contact Info */}
                         <div className="space-y-4">
-                          <span className="font-mono text-xs sm:text-sm text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
+                          <span className="font-mono text-sm sm:text-base text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
                             {isAr ? "الخطوة 1: بيانات تواصل الشركة" : "Step 1: Company Contact Details"}
                           </span>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -447,7 +413,7 @@ function ContactDeskInner() {
 
                         {/* Section 2: Material Specifications */}
                         <div className="space-y-4 pt-5 border-t border-border">
-                          <span className="font-mono text-xs sm:text-sm text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
+                          <span className="font-mono text-sm sm:text-base text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
                             {isAr ? "الخطوة 2: مواصفات الفولاذ المطلوب" : "Step 2: Material Specifications"}
                           </span>
                           
@@ -506,7 +472,7 @@ function ContactDeskInner() {
 
                           {/* Dynamic Dimension Inputs based on shape */}
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-background border border-border p-5 rounded-sm">
-                            <span className="col-span-full font-mono text-xs sm:text-xs text-orange font-bold uppercase tracking-wider block border-b border-border pb-1.5 mb-2">
+                            <span className="col-span-full font-mono text-xs sm:text-sm text-orange font-bold uppercase tracking-wider block border-b border-border pb-1.5 mb-2">
                               {isAr ? "أدخل الأبعاد (مم)" : "Enter Dimensions (mm)"}
                             </span>
 
@@ -606,7 +572,7 @@ function ContactDeskInner() {
 
                         {/* Section 3: Processing & Quality */}
                         <div className="space-y-4 pt-5 border-t border-border">
-                          <span className="font-mono text-xs sm:text-sm text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
+                          <span className="font-mono text-sm sm:text-base text-orange uppercase tracking-widest block font-bold border-b border-border pb-2">
                             {isAr ? "الخطوة 3: الأبعاد والشهادات وشروط التوريد" : "Step 3: Sizing & Quality Controls"}
                           </span>
 
@@ -659,59 +625,6 @@ function ContactDeskInner() {
                               />
                             </div>
                           </div>
-                        </div>
-
-                        {/* Section 4: Secure File Uploader */}
-                        <div className="space-y-4 pt-5 border-t border-border">
-                          <span className="font-mono text-xs sm:text-sm text-[#D65A24] uppercase tracking-widest block font-bold border-b border-border pb-2">
-                            {isAr ? "الخطوة 4: المخططات الهندسية CAD (اختياري)" : "Step 4: CAD Drawings & Specifications (Optional)"}
-                          </span>
-
-                          <div className="border border-dashed border-steel/30 rounded-sm p-7 text-center hover:border-orange transition-colors relative bg-background">
-                            <input
-                              type="file"
-                              multiple
-                              onChange={handleFileChange}
-                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                              title="Upload CAD drawings"
-                            />
-                            <Upload className="w-9 h-9 text-[#D65A24] mx-auto mb-2 opacity-80" />
-                            <p className="font-sans text-sm text-foreground font-semibold mb-1">
-                              {isAr ? "اسحب الملفات هنا أو انقر للاختيار" : "Drag & Drop files or Click to select"}
-                            </p>
-                            <p className="font-mono text-xs text-steel leading-relaxed">
-                              ACCEPTED: PDF, DWG, DXF, STEP, XLSX, CSV, JPG, PNG (MAX size: 15MB)
-                            </p>
-                          </div>
-
-                          {fileError && (
-                            <div className="flex items-center space-x-2 bg-orange/5 border border-orange/20 p-3 rounded-sm text-xs text-orange">
-                              <AlertCircle className="w-4 h-4 shrink-0" />
-                              <span>{fileError}</span>
-                            </div>
-                          )}
-
-                          {/* List of uploaded files */}
-                          {uploadedFiles.length > 0 && (
-                            <div className="space-y-2">
-                              {uploadedFiles.map((file, idx) => (
-                                <div key={idx} className="flex items-center justify-between bg-background border border-border p-3 rounded-sm text-xs">
-                                  <div className="flex items-center space-x-2 text-steel">
-                                    <FileText className="w-4 h-4 text-orange" />
-                                    <span className="truncate text-foreground font-semibold max-w-xs">{file.name}</span>
-                                    <span>({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
-                                  </div>
-                                  <button
-                                    type="button"
-                                    onClick={() => removeFile(idx)}
-                                    className="text-orange hover:text-white font-mono text-xs uppercase font-bold"
-                                  >
-                                    Delete
-                                  </button>
-                                </div>
-                              ))}
-                            </div>
-                          )}
                         </div>
 
                         <div className="space-y-4 pt-5 border-t border-border">
@@ -846,14 +759,14 @@ function ContactDeskInner() {
           <div className="mt-16 bg-graphite border border-border p-6 sm:p-8 rounded-sm space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
               <div>
-                <span className="font-mono text-xs text-[#D65A24] uppercase tracking-widest font-bold block mb-1">
+                <span className="font-mono text-sm sm:text-base text-[#D65A24] uppercase tracking-widest font-bold block mb-1">
                   Visit Bab Al Khibrah
                 </span>
                 <h2 className="font-display text-2xl font-black text-foreground">
                   Visit Our Bab Al Khibrah Yard &amp; Sales Office
                 </h2>
-                <p className="font-sans text-xs text-steel mt-1">
-                  Office #1, Yard #3600 sq.ft, Al Saja'a Industrial Area, Sharjah, United Arab Emirates (P.O. Box 24891)
+                <p className="font-sans text-sm text-steel mt-1 font-medium">
+                  Emirates Industrial City,Office #1, Al Saja'a Industrial Area, Sharjah, United Arab Emirates (P.O. Box 24891)
                 </p>
               </div>
 

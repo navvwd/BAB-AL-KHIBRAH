@@ -27,7 +27,7 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
-                <span className="font-mono text-xs text-[#D65A24] uppercase tracking-widest font-bold block">
+                <span className="font-mono text-sm sm:text-base text-[#D65A24] uppercase tracking-widest font-black block">
                   {isAr ? "متخصص في صلب الهندسة والصناعة — الإمارات والشرق الأوسط" : "Engineering Steel Specialist — UAE & Middle East"}
                 </span>
                 <h1 className="font-display text-4xl sm:text-5xl font-black text-foreground leading-tight">
@@ -72,11 +72,8 @@ export default function AboutPage() {
                   priority
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                  <p className="font-mono text-[10px] text-white/70 uppercase tracking-widest">
+                  <p className="font-mono text-xs text-white/80 uppercase tracking-widest font-semibold">
                     {isAr ? "مستودع الشارقة · تأسست 2015" : "Sharjah Yard · Est. 2015"}
-                  </p>
-                  <p className="font-sans text-sm text-white font-semibold">
-                    {isAr ? "منشأة صناعية بمساحة 3,600 قدم مربع" : "3,600 sq.ft Industrial Facility"}
                   </p>
                 </div>
               </div>
@@ -88,7 +85,7 @@ export default function AboutPage() {
         <section className="py-16 bg-graphite border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-10">
-              <span className="font-mono text-xs text-[#D65A24] uppercase tracking-widest font-bold block mb-2">
+              <span className="font-mono text-sm sm:text-base text-[#D65A24] uppercase tracking-widest font-black block mb-2">
                 {t("prodServicesTitle")}
               </span>
               <h2 className="font-display text-3xl sm:text-4xl font-black text-foreground mb-4">
@@ -131,7 +128,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6">
-                <span className="font-mono text-xs text-[#D65A24] uppercase tracking-widest font-bold block">
+                <span className="font-mono text-sm sm:text-base text-[#D65A24] uppercase tracking-widest font-black block">
                   {t("specialReqTitle")}
                 </span>
                 <h2 className="font-display text-2xl font-black text-foreground">
@@ -149,7 +146,7 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-6">
-                <span className="font-mono text-xs text-[#D65A24] uppercase tracking-widest font-bold block">
+                <span className="font-mono text-sm sm:text-base text-[#D65A24] uppercase tracking-widest font-black block">
                   {t("inspectionTitle")}
                 </span>
                 <h2 className="font-display text-2xl font-black text-foreground">
@@ -198,7 +195,7 @@ export default function AboutPage() {
         <section className="py-16 bg-graphite border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10">
-              <span className="font-mono text-xs text-[#D65A24] uppercase tracking-widest font-bold block mb-2">
+              <span className="font-mono text-sm sm:text-base text-[#D65A24] uppercase tracking-widest font-black block mb-2">
                 {isAr ? "التزاماتنا وركائز خدمتنا" : "Our Commitments"}
               </span>
               <h2 className="font-display text-3xl font-black text-foreground">

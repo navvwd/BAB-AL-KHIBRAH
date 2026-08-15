@@ -58,7 +58,7 @@ export default function ProcurementProcess() {
         <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
           <div className="inline-flex items-center space-x-2 bg-graphite border border-border px-3 py-1 rounded-sm">
             <span className="w-2 h-2 bg-[#D65A24] rounded-full"></span>
-            <span className="font-mono text-xs uppercase tracking-widest text-[#D65A24] font-bold">
+            <span className="font-mono text-sm sm:text-base uppercase tracking-widest text-[#D65A24] font-black">
               {t("procurementTag")}
             </span>
           </div>
@@ -85,7 +85,7 @@ export default function ProcurementProcess() {
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-2xl font-black text-[#D65A24]">
+                  <span className="font-display text-3xl font-black text-[#D65A24]">
                     {step.num}
                   </span>
                   <div className="p-2 rounded-sm bg-background border border-border">
@@ -108,7 +108,7 @@ export default function ProcurementProcess() {
               </div>
 
               <div className="border-t border-border/80 pt-4 mt-6">
-                <span className="font-mono text-[9px] text-[#D65A24] font-bold tracking-wider block uppercase">
+                <span className="font-mono text-xs sm:text-sm text-[#D65A24] font-bold tracking-wider block uppercase">
                   {step.deliverable}
                 </span>
               </div>

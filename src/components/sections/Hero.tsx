@@ -164,7 +164,7 @@ export default function Hero() {
 
               {/* Controls Overlay */}
               <div className="absolute top-4 left-4 right-4 z-30 flex items-center justify-between pointer-events-none">
-                <span className="font-mono text-[9px] bg-background/90 backdrop-blur-sm border border-border text-[#D65A24] font-bold px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                <span className="font-mono text-xs sm:text-sm bg-background/90 backdrop-blur-sm border border-border text-[#D65A24] font-black px-3 py-1.5 rounded-sm uppercase tracking-wider">
                   {t("sajaaGallery")}
                 </span>
                 <div className="flex items-center space-x-2 pointer-events-auto">
@@ -205,7 +205,7 @@ export default function Hero() {
 
                   {/* Sleek Overlay Text */}
                   <div className="absolute bottom-4 left-4 right-4 z-20 space-y-1">
-                    <span className="font-mono text-[9px] text-[#D65A24] font-bold tracking-widest uppercase block">
+                    <span className="font-mono text-xs sm:text-sm text-[#D65A24] font-black tracking-widest uppercase block">
                       {activeSlide.category}
                     </span>
                     <h3 className="font-display text-lg font-bold text-white">

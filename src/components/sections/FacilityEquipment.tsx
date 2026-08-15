@@ -15,7 +15,7 @@ export default function FacilityEquipment() {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16 space-y-4">
-          <span className="font-mono text-xs uppercase tracking-widest text-orange font-semibold block">
+          <span className="font-mono text-sm sm:text-base uppercase tracking-widest text-orange font-bold block">
             {t("facilityTag")}
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-black tracking-tight text-foreground">

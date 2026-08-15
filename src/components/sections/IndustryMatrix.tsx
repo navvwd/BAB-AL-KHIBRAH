@@ -106,7 +106,7 @@ export default function IndustryMatrix() {
         <div className="max-w-3xl mb-10 space-y-2">
           <div className="inline-flex items-center space-x-2 bg-graphite border border-border px-3 py-1 rounded-sm">
             <span className="w-1.5 h-1.5 bg-[#D65A24] rounded-full"></span>
-            <span className="font-mono text-[9px] uppercase tracking-widest text-[#D65A24] font-bold">
+            <span className="font-mono text-xs sm:text-sm uppercase tracking-widest text-[#D65A24] font-black">
               {t("matrixTag")}
             </span>
           </div>
@@ -159,7 +159,7 @@ export default function IndustryMatrix() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-border pt-4">
               <div className="space-y-2">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-[#D65A24] font-bold block">
+                <span className="font-mono text-xs sm:text-sm uppercase tracking-widest text-[#D65A24] font-bold block">
                   {t("targetAlloysLabel")}
                 </span>
                 <ul className="space-y-1 font-sans text-xs text-foreground">

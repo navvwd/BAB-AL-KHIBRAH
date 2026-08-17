@@ -65,7 +65,7 @@ export default function AboutPage() {
               {/* Company Photo */}
               <div className="relative h-80 lg:h-[420px] rounded-sm overflow-hidden border border-border">
                 <Image
-                  src="/IMG_20260801_174755.jpg.jpeg"
+                  src="/1000228303.jpg.jpeg"
                   alt="Bab Al Khibrah Sharjah warehouse"
                   fill
                   className="object-cover"

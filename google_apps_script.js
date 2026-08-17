@@ -85,7 +85,15 @@ function doPost(e) {
     var formType = data.formType || "rfq";
 
     // ---- Access Google Spreadsheet ----
-    var doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    var doc;
+    try {
+      doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    } catch (e) {
+      doc = SpreadsheetApp.getActiveSpreadsheet();
+    }
+    if (!doc) {
+      doc = SpreadsheetApp.getActiveSpreadsheet();
+    }
 
     if (formType === "rfq" || formType === "Sheet1") {
       // ------------------------------------------------------------

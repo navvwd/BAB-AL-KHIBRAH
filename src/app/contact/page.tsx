@@ -124,7 +124,7 @@ function ContactDeskInner() {
     setRfqSummaryForWhatsApp(encodeURIComponent(waText));
 
     // Async post to Google Apps Script (Sheet1) if Web App URL configured
-    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbzlJho2us9B0zTfYGGDfuO9Qj6214205VjfRYsRm4JqOXEi_5ApryKDPXO5OK8eF_Z0/exec";
+    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbx9xKXEXrlwmSvKbxTr5H5gTck2_wWwYcN79dAllpLns5Q25xEeadJb5zGFpE6C-DmlVQ/exec";
     if (scriptUrl) {
       fetch(scriptUrl, {
         method: "POST",
@@ -165,7 +165,7 @@ function ContactDeskInner() {
     setRfqSummaryForWhatsApp(encodeURIComponent(waText));
 
     // Async post to Google Apps Script (Sheet2) if Web App URL configured
-    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbzlJho2us9B0zTfYGGDfuO9Qj6214205VjfRYsRm4JqOXEi_5ApryKDPXO5OK8eF_Z0/exec";
+    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbx9xKXEXrlwmSvKbxTr5H5gTck2_wWwYcN79dAllpLns5Q25xEeadJb5zGFpE6C-DmlVQ/exec";
     if (scriptUrl) {
       fetch(scriptUrl, {
         method: "POST",
